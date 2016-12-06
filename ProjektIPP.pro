@@ -20,4 +20,4 @@ HEADERS  += \
     Button.h \
     Game.h
 
-FORMS    += game.ui
+FORMS    +=

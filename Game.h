@@ -1,22 +1,34 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <QMainWindow>
+#include <QGraphicsView>
+#include <QGraphicsScene>
+#include <QGraphicsTextItem>
 
-namespace Ui {
-class Game;
-}
+#include "Button.h"
 
-class Game : public QMainWindow
-{
+
+class Game: public QGraphicsView{
     Q_OBJECT
-
 public:
-    explicit Game(QWidget *parent = 0);
+    // konstruktor
+    Game(QWidget* parent=0);
+
+
+    // dekonsturktor
     ~Game();
 
-private:
-    Ui::Game *ui;
+    // metody
+    void gamemenu();
+
+
+    // attrybuty
+    QGraphicsScene* scene;
+public slots:
+    // void start();
+
 };
+
+
 
 #endif // GAME_H

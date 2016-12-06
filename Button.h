@@ -4,19 +4,20 @@
 #include <QGraphicsRectItem>
 #include <QGraphicsSceneMouseEvent>
 #include <QGraphicsTextItem>
+#include <QGraphicsScene>
 #include <QBrush>
 
 
 class Button : public QObject,public QGraphicsRectItem{
     Q_OBJECT
 public :
-    //constructors
+    //konstruktor
     Button(QString name,QGraphicsItem* parent = 0);
 
-    //
+    //dekonstruktor
     ~Button();
 
-    // methods
+    // metody
    void mousePressEvent(QGraphicsSceneMouseEvent *event);
    void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
    void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);

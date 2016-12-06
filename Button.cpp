@@ -11,8 +11,10 @@ Button::Button(QString name, QGraphicsItem *parent): QGraphicsRectItem(parent)
     brush.setColor(Qt::blue);
     setBrush(brush);
 
-    // rysowanie
+    // dodawanie napisu
     text = new QGraphicsTextItem(name,this);
+    QFont buttonFont1("Times New Roman",30);
+    text->setFont(buttonFont1);
     int xPos = rect().width()/2 - text->boundingRect().width()/2;
     int yPos = rect().height()/2 - text->boundingRect().height()/2;
     text->setPos(xPos,yPos);
