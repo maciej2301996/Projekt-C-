@@ -1,25 +1,32 @@
 #ifndef SCHOOL_H
 #define SCHOOL_H
 
-#include <QMainWindow>
+#include <QGraphicsView>
+#include <QGraphicsScene>
+#include <QGraphicsTextItem>
 
 #include "addfunction.h"
 
 
-namespace Ui {
-class School;
-}
-
-class School : public QMainWindow
-{
+class School : public QGraphicsView{
     Q_OBJECT
-
 public:
-    explicit School(QWidget *parent = 0);
+    // konstruktor
+    School(QWidget* parent=0);
+
+
+    // dekonsturktor
     ~School();
 
-private:
-    Ui::School *ui;
+    // metody
+    void drawTabel();
+
+
+    // attrybuty
+    QGraphicsScene* scene;
+public slots:
+
+
 };
 
 #endif // SCHOOL_H

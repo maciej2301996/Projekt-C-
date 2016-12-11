@@ -1,18 +1,37 @@
 #include "school.h"
-#include "ui_school.h"
+
+#include "interface1.h"
 
 
 
 
-School::School(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::School)
+School::School(QWidget *parent)
 {
-    ui->setupUi(this);
-    Connect();
+    // ustawienia ekranu
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setFixedSize(1910,1000);
+
+    // ustawienia sceny
+    scene = new QGraphicsScene();
+    scene->setSceneRect(0,0,1910,1000);
+    setScene(scene);
 }
 
 School::~School()
 {
-    delete ui;
+
+}
+
+
+void School::drawTabel()
+{
+
+    interface1* a = new interface1(QString("Andrzej"),QString("Strzygielski"));
+    int x = 50;
+    int y = 300;
+    a->setPos(x,y);
+    scene->addItem(a);
+    //12
+
 }

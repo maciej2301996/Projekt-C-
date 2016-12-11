@@ -17,11 +17,16 @@ TEMPLATE = app
 SOURCES += main.cpp\
         school.cpp \
     addfunction.cpp \
-    teacher.cpp
+    teacher.cpp \
+    interface1.cpp \
+    interface2.cpp \
+    interface3.cpp
 
 HEADERS  += school.h \
     addfunction.h \
-    teacher.h
+    teacher.h \
+    interface1.h \
+    interface2.h \
+    interface3.h
 
-FORMS    += school.ui \
-    mainwindow.ui
+FORMS    +=
