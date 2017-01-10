@@ -3,7 +3,7 @@
 
 #include <QGraphicsRectItem>
 #include <QGraphicsSceneMouseEvent>
-#include <QGraphicsTextItem>
+#include <QGraphicsSimpleTextItem>
 #include <QGraphicsScene>
 #include <QBrush>
 #include <QLineEdit>
@@ -13,25 +13,30 @@
 
 #include "input.h"
 
+
 class InterfaceElement2 : public QObject , public QGraphicsRectItem{
     Q_OBJECT
 public:
-    InterfaceElement2(int x,int y,QGraphicsItem* parent = 0);
-    InterfaceElement2(int x,int y,QString name, QGraphicsItem *parent = 0);
+    InterfaceElement2(int x,int y,int IndeksKomorki,QGraphicsItem* parent = 0);
+    InterfaceElement2(int x,int y,int IndeksKomorki,QString name, QGraphicsItem *parent = 0);
 
     ~InterfaceElement2();
 
-    void mousePressEvent(QGraphicsSceneMouseEvent *event = 0);
+    void uzupelnijDane(QString napis);
 
+    void mousePressEvent(QGraphicsSceneMouseEvent *event = 0);
+    int X;
+    int Y;
+    int unikatowaliczba;
 signals:
-    void create();
+    void create(int i);
+    void stworzPolaczenie();
 public slots:
 
 
 private:
-    int X;
-    int Y;
-    QGraphicsTextItem* text1;
+
+    QGraphicsSimpleTextItem* text1;
     QLineEdit* linia;
 };
 

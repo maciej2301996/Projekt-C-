@@ -5,14 +5,23 @@
 #include <QLineEdit>
 #include <QValidator>
 #include <QDebug>
+#include <QKeyEvent>
+#include <QWidget>
+#include <QGraphicsSceneMouseEvent>
+
 
 class Input : public QLineEdit
 {
 public:
-    Input();
+    Input(int X,int Y,int Z);
+    ~Input();
+    int X;
+    int Y;
+    int Value ;
+
 
 signals:
-    void wyslij();
+    void editingFinished();
 
 public slots:
     void stworz();

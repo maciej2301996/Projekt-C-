@@ -1,17 +1,26 @@
 #include "input.h"
 
-Input::Input()
+#include "school.h"
+extern School* school;
+Input::Input(int X, int Y, int Z)
 {
     // przygotowanie pola do pisania
-    setGeometry(180,180,26,26);
+    setGeometry(X,Y,26,26);
     setFixedSize(26,26);
     setMaxLength(2);
 
     // ustawienie zakresu mozliwego do wpisania
     QRegExp zakresQLineEdit("[1-6]{0,1}[-,+]{1,1}");
     QValidator *validator = new QRegExpValidator(zakresQLineEdit,this);
-    validator->Acceptable;
+    Value = Z;
     setValidator(validator);
-    qDebug()<< "dziala";
-    // school->scene->addWidget(linia);
+
+    setFocusPolicy(Qt::StrongFocus);
+
+
 }
+Input::~Input()
+{
+    QObject::disconnect(this,SIGNAL(editingFinished()),school,SLOT(zbieranie()));
+}
+
