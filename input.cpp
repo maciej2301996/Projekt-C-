@@ -2,8 +2,9 @@
 
 #include "school.h"
 extern School* school;
-Input::Input(int X, int Y, int Z)
-{
+Input::Input(int X, int Y, int Z, QString ID, QString nazwakolumny)
+{   IDwTabeli = ID;
+    nazwaKolumny = nazwakolumny;
     // przygotowanie pola do pisania
     setGeometry(X,Y,26,26);
     setFixedSize(26,26);
@@ -21,6 +22,6 @@ Input::Input(int X, int Y, int Z)
 }
 Input::~Input()
 {
-    QObject::disconnect(this,SIGNAL(editingFinished()),school,SLOT(zbieranie()));
+    //QObject::disconnect(this,SIGNAL(editingFinished()),school,SLOT(zbieranie()));
 }
 

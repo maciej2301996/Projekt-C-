@@ -13,13 +13,14 @@
 class Input : public QLineEdit
 {
 public:
-    Input(int X,int Y,int Z);
+    Input(int X,int Y,int Z,QString ID,QString nazwakolumny);
     ~Input();
     int X;
     int Y;
     int Value ;
 
-
+    QString IDwTabeli;
+    QString nazwaKolumny;
 signals:
     void editingFinished();
 

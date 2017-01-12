@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QComboBox>
 #include <QSqlDatabase>
+#include <QDebug>
 
 
 class Lista :  public QComboBox

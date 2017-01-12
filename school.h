@@ -18,8 +18,15 @@
 #include "interfaceelement2.h"
 #include "interfaceelement3.h"
 #include "input.h"
+#include "input3.h"
 #include "przyciskclasswindow.h"
 #include "lista.h"
+#include "dodajuczen.h"
+#include "dodajprzedmiot.h"
+#include "dodajuzytkownik.h"
+#include "usunuczen.h"
+#include "usunprzedmiot.h"
+#include "usunuzytkownik.h"
 
 
 class School : public QGraphicsView
@@ -43,10 +50,20 @@ public :
     QList<InterfaceElement3*>    elementlist3;
     QList<InterfaceElement2*>    elementlist2;
     QList<Input*>                inputlist;
+    QList<Input3*>               inputlistelement3;
     QList<QGraphicsProxyWidget*> inputlist1;
+    QList<QGraphicsProxyWidget*> inputlistelement31;
 
     PrzyciskClassWindow*      buttonZatwierdzZmiany;
     PrzyciskClassWindow*      buttonDodajKolumne;
+
+    QPushButton*    dodajucznia;
+    QPushButton*    dodajkonto;
+    QPushButton*    dodajprzedmiot;
+    QPushButton*    usunucznia;
+    QPushButton*    usunkonto;
+    QPushButton*    usunprzedmiot;
+
 
     Lista* comboxPrzedmioty;
     Lista* comboxKlasy;
@@ -64,20 +81,24 @@ public :
     int LicznikWierszy    ;
     int LicznikOcenPojedynczegoUcznia;
     int NumerKolumnyPobieranej;
-
-
+    int IndeksKolumny     ;
+    int rola              ;
 
     QString klasa         ;
     QString przedmiot     ;
-
+    QString nazwaBazy     ;
     // metody
 
-    void polaczenie();
+    void polaczenie(QString a, QString b, QString c, QString d, int i);
     void classwindow();
     void tworzenieElementuPierwszego(QString i);
     void tworzenieElementuDrugiego(QString i);
-    void tworzenieElementuDrugiegoiTrzeciego(QString i);
+    void tworzenieElementuDrugiegoPustego(QString i);
     void tworzenieElementuPierwszegoiTrzeciego(QString i);
+    void tworzenieElementuTrzeciego();
+    void dodawanieOcenTabela(int i);
+    void dodawanieNazwKolumnTabela(int i);
+    void tworzeniePaneluAdministratora();
 
     QString sklej();
     QString sklej1();
@@ -88,13 +109,26 @@ signals:
     void zmianaStanu();
 public slots:
 
-    void proba(int value);
-    void zbieranie();
+    void tworzenieInputElement2(int value);
+    void tworzenieInputElement3(int value);
     void zatwierdzzmiany();
     void dodajKolumne();
     void zmienKlase(QString value);
     void zmienPrzedmiot(QString value);
 
+    void DodajUcznia();
+    void UsunUcznia();
+    void DodajKonto();
+    void UsunKonto();
+    void DodajPrzedmiot();
+    void UsunPrzedmiot();
+
+    void wprowadzDane();
+    void usunDane();
+    void dodajUzytkownik();
+    void usunUzytkownik();
+    void dodajPrzedmiot();
+    void usunPrzedmiot();
 private:
 
 

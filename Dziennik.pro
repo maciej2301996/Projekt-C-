@@ -22,7 +22,14 @@ SOURCES += main.cpp\
     funkcje.cpp \
     przyciskclasswindow.cpp \
     lista.cpp \
-    logowanie.cpp
+    logowanie.cpp \
+    input3.cpp \
+    dodajuczen.cpp \
+    usunuczen.cpp \
+    dodajuzytkownik.cpp \
+    usunuzytkownik.cpp \
+    dodajprzedmiot.cpp \
+    usunprzedmiot.cpp
 
 HEADERS  += school.h \
     interfaceelement1.h \
@@ -32,6 +39,13 @@ HEADERS  += school.h \
     funkcje.h \
     przyciskclasswindow.h \
     lista.h \
-    logowanie.h
+    logowanie.h \
+    input3.h \
+    dodajuczen.h \
+    usunuczen.h \
+    dodajuzytkownik.h \
+    usunuzytkownik.h \
+    dodajprzedmiot.h \
+    usunprzedmiot.h
 
-FORMS    += school.ui
+FORMS    +=
