@@ -638,6 +638,7 @@ void School::wprowadzDane()
       t += "'')";
     download.exec(t);
     qDebug() << t;
+    emit zmienKlase(klasa);
     }
 }
 void School::usunDane()
@@ -669,8 +670,8 @@ void School::usunDane()
     qDebug()<< t ;}
 
     }
+    emit zmienKlase(klasa);
 }
-
 void School::dodajUzytkownik()
 {   QSqlQuery download;
     int i =0;
@@ -693,22 +694,21 @@ void School::dodajUzytkownik()
         qDebug() << "TT";
     }
 }
-
 void School::usunUzytkownik()
 {
     QSqlQuery download;
         int i =0;
         download.exec("SELECT `login` FROM `Logowanie`");
         while(download.next())
-        {
-            if(download.value(0).toString() == konto1->Login->text())
+        {   qDebug() << (download.value(0).toString() != konto1->Login->text());
+            if(download.value(0).toString() != konto1->Login->text())
             {
                 i =1;
             }
         }
-        if(i == 0)
+        if(i == 1)
         {
-            download.exec("DELETE `" + nazwaBazy + "`.`logowanie` WHERE `logowanie`.`Login` = '"+ konto1->login +"')");
+            download.exec("DELETE FROM `" + nazwaBazy + "`.`logowanie` WHERE `logowanie`.`Login` = '"+ konto1->login +"'");
             qDebug()<<"DELETE `" + nazwaBazy + "`.`logowanie` WHERE `logowanie`.`Login` = '"+ konto1->login +"')";
             konto->hide();
         }
@@ -717,7 +717,6 @@ void School::usunUzytkownik()
 
         }
 }
-
 void School::dodajPrzedmiot()
 {
 

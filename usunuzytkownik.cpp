@@ -21,7 +21,7 @@ void UsunUzytkownik::interface()
     Haslo       = new QLineEdit();
     Rola        = new QLineEdit();
 
-    Dodaj       = new QPushButton("Dodaj");
+    Dodaj       = new QPushButton("Usuń");
     Anuluj      = new QPushButton("Anuluj");
 
     Imie1       = new QLabel("Imię użytkownika");

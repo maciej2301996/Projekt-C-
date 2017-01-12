@@ -18,7 +18,7 @@ void UsunPrzedmiot::interface()
     Przedmiot      = new QLineEdit();
     Klasa       = new QLineEdit();
 
-    Dodaj       = new QPushButton("Dodaj");
+    Dodaj       = new QPushButton("Usuń");
     Anuluj      = new QPushButton("Anuluj");
 
 
