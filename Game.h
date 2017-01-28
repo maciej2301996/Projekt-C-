@@ -4,9 +4,11 @@
 #include <QGraphicsView>
 #include <QGraphicsScene>
 #include <QGraphicsTextItem>
+#include <QObject>
+#include <QLabel>
 
 #include "Button.h"
-
+#include "poleplanszy.h"
 
 class Game: public QGraphicsView{
     Q_OBJECT
@@ -20,12 +22,16 @@ public:
 
     // metody
     void gamemenu();
-
+    QList<PolePlanszy*> PolaGracza1;
+    QList<PolePlanszy*> PolaPrzeciwnika;
 
     // attrybuty
     QGraphicsScene* scene;
+    QGraphicsScene* scene2;
 public slots:
-    // void start();
+    void start();
+
+
 
 };
 

@@ -19,25 +19,19 @@ Button::Button(QString name, QGraphicsItem *parent): QGraphicsRectItem(parent)
     int yPos = rect().height()/2 - text->boundingRect().height()/2;
     text->setPos(xPos,yPos);
 
-
-
     setAcceptHoverEvents(true);
 }
-
 Button::~Button()
 {
 
 }
-
-
-
-void Button::mousePressEvent(QGraphicsSceneMouseEvent *event)
+void Button::mousePressEvent(QGraphicsSceneMouseEvent *)
 {
     emit clicked();
 }
 
 
-void Button::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
+void Button::hoverEnterEvent(QGraphicsSceneHoverEvent *)
 {
     QBrush brush;
     brush.setStyle(Qt::SolidPattern);
@@ -46,7 +40,7 @@ void Button::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 }
 
 
-void Button::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
+void Button::hoverLeaveEvent(QGraphicsSceneHoverEvent *)
 {
     QBrush brush;
     brush.setStyle(Qt::SolidPattern);

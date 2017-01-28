@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game(QWidget *parent)
+Game::Game(QWidget *)
 {
     // ustawienia ekranu
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -12,14 +12,12 @@ Game::Game(QWidget *parent)
     scene->setSceneRect(0,0,1910,1000);
     setScene(scene);
 
-}
 
+}
 Game::~Game()
 {
 
 }
-
-
 void Game::gamemenu()
 {
     //tworzenie tytułu gry
@@ -39,11 +37,10 @@ void Game::gamemenu()
     int button1xPos = this->width()/2 - playButton->boundingRect().width()/2;
     int button1yPos = this->height() * 2 /6;
     playButton->setPos(button1xPos,button1yPos);
-    // conect(playButton SIGNAL(clicked()),this,SLOT(start()));
+    QObject::connect(playButton,SIGNAL(clicked()),this,SLOT(start()));
     scene->addItem(playButton);
 
     // przycisk opcji
-
     Button* optionButton = new Button(QString("Opcje"));
     int button3xPos = this->width()/2 - optionButton->boundingRect().width()/2;
     int button3yPos = this->height() * 2 /6 + 80;
@@ -57,7 +54,6 @@ void Game::gamemenu()
     instructionButton->setPos(button2xPos,button2yPos);
     scene->addItem(instructionButton);
 
-
     // przycisk wyjscia
     Button* quitButton = new Button(QString("Wyjście"));
     int button4xPos = this->width()/2 - quitButton->boundingRect().width()/2;
@@ -65,7 +61,44 @@ void Game::gamemenu()
     quitButton->setPos(button4xPos,button4yPos);
     scene->addItem(quitButton);
 }
+void Game::start()
+{
+    scene2 = new QGraphicsScene();
+    scene2->setSceneRect(0,0,1910,1000);
+    setScene(scene2);
 
+
+    for(int i = 0; i < 10 ;i++)
+        for(int j  = 0; j < 10 ; j++)
+          {
+            PolePlanszy* gracz1 = new PolePlanszy();
+            gracz1->setPos(100+40*j ,50+40*i);
+            scene2->addItem(gracz1);
+            PolaGracza1.append(gracz1);
+
+
+            PolePlanszy* komputer = new PolePlanszy();
+            komputer->setPos(100+40*j,500+40*i);
+            scene2->addItem(komputer);
+            PolaPrzeciwnika.append(komputer);
+          }
+
+    // wstawianie obrazka
+
+    QPixmap pix("C:\\Users\\user\\Desktop\\dwumasztowiec.png");
+    QLabel *frame = new QLabel();
+    frame->setGeometry(100,50,80,40);
+    frame->setPixmap(pix);
+    scene2->addWidget(frame);
+
+
+
+
+
+
+
+
+}
 
 
 
