@@ -15,11 +15,15 @@ TEMPLATE = app
 SOURCES += main.cpp\
     Game.cpp \
     Button.cpp \
-    PolePlanszy.cpp
+    PolePlanszy.cpp \
+    okret.cpp \
+    ramka.cpp
 
 HEADERS  += \
     Button.h \
     Game.h \
-    PolePlanszy.h
+    PolePlanszy.h \
+    okret.h \
+    ramka.h
 
 FORMS    +=
