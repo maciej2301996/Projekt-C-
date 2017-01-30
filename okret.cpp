@@ -10,6 +10,11 @@ Okret::Okret(QString a)
     ruch = false;
 
 }
+
+Okret::~Okret()
+{
+
+}
 void Okret::mousePressEvent(QMouseEvent *ev)
 {
      offset = ev->pos();

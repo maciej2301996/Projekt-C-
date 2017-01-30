@@ -14,6 +14,8 @@ class Okret :  public QLabel
 public:
     Okret(QString a);
 
+    ~Okret();
+
     void mousePressEvent(QMouseEvent* ev);
     void mouseMoveEvent(QMouseEvent* event);
     void mouseReleaseEvent(QMouseEvent* event);

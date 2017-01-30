@@ -12,10 +12,10 @@ Game::Game(QWidget *)
     scene->setSceneRect(0,0,1910,1000);
     setScene(scene);
 
-    iloscJednomasztowcow = 3;
-    iloscDwumasztowcow = 1 ;
-    iloscTrojmasztowcow = 1;
-    iloscCzteromasztowcow = 1;
+    iloscJednomasztowcow = 4;
+    iloscDwumasztowcow = 3;
+    iloscTrojmasztowcow = 2;
+    iloscCzteromasztowcow =1;
 
     liczbaDoRozstawieniaJednomasztowcow = iloscJednomasztowcow;
     liczbaDoRozstawieniaDwumasztowcow = iloscDwumasztowcow;
@@ -27,7 +27,16 @@ Game::Game(QWidget *)
     obrazektrojmasztowca   = "C:\\Users\\user\\Desktop\\IPP\\trojmasztowiec.png";
     obrazekczteromasztowca = "C:\\Users\\user\\Desktop\\IPP\\czteromasztowiec.png";
 
+    obrazekjednomasztowcaobrocony = "C:\\Users\\user\\Desktop\\IPP\\jednomasztowiecpionowo.png";
+    obrazekdwumasztowcaobrocony   = "C:\\Users\\user\\Desktop\\IPP\\dwumasztowiecpionowo.png";
+    obrazektrojmasztowcaobrocony  = "C:\\Users\\user\\Desktop\\IPP\\trojmasztowiecpionowo.png";
+    obrazekczteromasztowcaobrocony= "C:\\Users\\user\\Desktop\\IPP\\czteromasztowiecpionowo.png";
+
     rodzajStatku = 0;
+
+    ktoryStatekObrocic = 0;
+
+    rozstawionychStatkow = 0;
 }
 Game::~Game()
 {
@@ -86,7 +95,8 @@ void Game::dodawanieStatkow(QString a)
 void Game::rozstawianieStatkow()
 {
   if(rodzajStatku == 0)
-  {
+  { ktoryStatekObrocic = 0;
+    czyObrocony = false ;
     if(liczbaDoRozstawieniaJednomasztowcow > 0)
     {
         dodawanieStatkow(obrazekjednomasztowca);
@@ -101,7 +111,8 @@ void Game::rozstawianieStatkow()
   }
 
   if(rodzajStatku == 1)
-  {
+  { ktoryStatekObrocic = 1;
+    czyObrocony = false ;
     if(liczbaDoRozstawieniaDwumasztowcow != 0)
     {
         dodawanieStatkow(obrazekdwumasztowca);
@@ -113,7 +124,8 @@ void Game::rozstawianieStatkow()
   }
 
   if(rodzajStatku == 2)
-  {
+  { ktoryStatekObrocic = 2;
+    czyObrocony = false ;
     if(liczbaDoRozstawieniaTrojmasztowcow != 0)
     {
         dodawanieStatkow(obrazektrojmasztowca);
@@ -126,7 +138,8 @@ void Game::rozstawianieStatkow()
   }
 
   if(rodzajStatku == 3)
-  {
+  { ktoryStatekObrocic = 3;
+    czyObrocony = false ;
     if(liczbaDoRozstawieniaCzteromasztowcow != 0)
     {
         dodawanieStatkow(obrazekczteromasztowca);
@@ -137,6 +150,100 @@ void Game::rozstawianieStatkow()
         rodzajStatku +=1;
     }
   }
+}
+void Game::rozstawianieStatkowKomputera()
+{
+    int losowaOrientacja;
+    for(int i = 0; i < iloscJednomasztowcow; i++)
+    {
+        sprawdzRuchKomputera(obrazekjednomasztowca,losowaOrientacja,1);
+        losowaOrientacja = qrand() % 2;
+    }
+
+    for(int i = 0; i < iloscDwumasztowcow; i++)
+    {
+        sprawdzRuchKomputera(obrazekdwumasztowca,losowaOrientacja,2);
+        losowaOrientacja = qrand() % 2;
+    }
+    for(int i = 0; i < iloscTrojmasztowcow; i++)
+    {
+        sprawdzRuchKomputera(obrazektrojmasztowca,losowaOrientacja,3);
+        losowaOrientacja = qrand() % 2;
+    }
+    for(int i = 0; i < iloscCzteromasztowcow; i++)
+    {
+        sprawdzRuchKomputera(obrazekczteromasztowca,losowaOrientacja,4);
+        losowaOrientacja = qrand() % 2;
+    }
+    plansza();
+}
+void Game::sprawdzRuchKomputera(QString obrazek,int losowaOrientacja,int liczbaMasztow)
+{
+    int wysokosc ;
+    int szerokosc;
+
+    int losowaX = qrand() % 10 + 1 ;
+    int losowaY = qrand() % 10 + 1 ;
+
+    QPixmap pix(obrazek);
+
+    bool ustawWTablicy = false;
+
+    wysokosc = pix.height()/40;
+    szerokosc = pix.width()/40;
+
+    if(losowaOrientacja == 1)
+    {
+
+        wysokosc = pix.width()/40 ;
+        szerokosc = pix.height()/40;
+    }
+
+    for(int i = -1; i < ((wysokosc)+1);i++)
+        for(int j =-1; j < ((szerokosc)+1);j++)
+        {
+           if(tablicaRozstawieniaStatkowGracza2[losowaX+j][losowaY+i] == " ")
+           {
+             ustawWTablicy = true ;
+           }
+           else
+           {
+
+             ustawWTablicy = false;
+             i = wysokosc+1;
+             j = szerokosc +1;
+           }
+
+        }
+
+    if((losowaX + szerokosc)-1 > 10 )
+    {
+       ustawWTablicy = false;
+    }
+
+    if((losowaY + wysokosc)-1 > 10 )
+    {
+       ustawWTablicy = false;
+    }
+
+
+    if(ustawWTablicy == true)
+    {
+        for(int i = 0; i < ((wysokosc));i++)
+            for(int j = 0; j < ((szerokosc));j++)
+            {
+                qDebug() << losowaX+j << losowaY+i;
+                tablicaRozstawieniaStatkowGracza2[losowaX+j][losowaY+i] = QString::number(liczbaMasztow) ;
+
+            }
+        rozstawionychStatkow += 1;
+    }
+    else
+    {
+        sprawdzRuchKomputera(obrazek,(qrand()%2),liczbaMasztow);
+    }
+
+
 }
 void Game::start()
 {
@@ -163,7 +270,7 @@ void Game::start()
             PolaPrzeciwnika.append(komputer);
 
            // tablicaRozstawieniaStatkowGracza1[j][i] = " ";
-            tablicaRozstawieniaStatkowGracza2[j][i] = " ";
+           // tablicaRozstawieniaStatkowGracza2[j][i] = " ";
 
             tablicaStrzelaniaGracza1[j][i] = " ";
             tablicaStrzelaniaGracza2[j][i] = " ";
@@ -174,6 +281,7 @@ void Game::start()
         for(int j  = 0; j < 11 ; j++)
         {
             tablicaRozstawieniaStatkowGracza1[j][i] = " ";
+            tablicaRozstawieniaStatkowGracza2[j][i] = " ";
         }
 
     ramka = new Ramka();
@@ -181,9 +289,14 @@ void Game::start()
     scene2->addItem(ramka);
 
     przycisk = new QPushButton("Rozstaw statek");
-    przycisk->setGeometry(1020,400,90,30);
+    przycisk->setGeometry(1000,300,90,30);
     QObject::connect(przycisk,SIGNAL(clicked()),this,SLOT(sprawdzRuch()));
     scene2->addWidget(przycisk);
+
+    przycisk1= new QPushButton("Obróć statek");
+    przycisk1->setGeometry(1120,300,90,30);
+    QObject::connect(przycisk1,SIGNAL(clicked()),this,SLOT(obrocStatek()));
+    scene2->addWidget(przycisk1);
 
     rozstawianieStatkow();
 }
@@ -203,18 +316,41 @@ void Game::ruchStatku(){
 }
 void Game::sprawdzRuch()
 {
+    bool nieMaProblemu = true ;
     bool ustawWTablicy = false;
+
+    if((460 - (40*a + 20)) < frame->szerokosc )
+    {
+        qDebug() << a;
+        qDebug() << (460 - (40*a + 20)) << frame->szerokosc;
+        frame->setGeometry(1020,100,frame->szerokosc,frame->wysokosc);
+        ustawWTablicy = false;
+        nieMaProblemu = false;
+
+    }
+
+    if((450 - (40*b + 10)) < frame->wysokosc )
+    {
+        qDebug() << (410 - (40*b + 10)) << frame->wysokosc ;
+
+        frame->setGeometry(1020,100,frame->szerokosc,frame->wysokosc);
+        ustawWTablicy = false;
+        nieMaProblemu = false;
+    }
+
+
+
+   if(nieMaProblemu == true)
+   {
     for(int i = -1; i < ((frame->wysokosc/40)+1);i++)
         for(int j = -1; j < ((frame->szerokosc/40)+1);j++)
         {
            if(tablicaRozstawieniaStatkowGracza1[a+j][b+i] == " ")
            {
-             qDebug() << a+j << b+i ;
              ustawWTablicy = true ;
            }
            else
            {
-
              frame->setGeometry(1020,100,frame->szerokosc,frame->wysokosc);
              ustawWTablicy = false;
              i = ((frame->wysokosc/40)+2);
@@ -222,6 +358,7 @@ void Game::sprawdzRuch()
            }
 
         }
+   }
     if(ustawWTablicy == true)
     {
         frame->statusRuchu = 1;
@@ -229,16 +366,14 @@ void Game::sprawdzRuch()
             for(int j = 0; j < ((frame->szerokosc/40));j++)
             {
                 tablicaRozstawieniaStatkowGracza1[a+j][b+i] = "1";
-                qDebug() << a+j << b+i ;
+
             }
         if(liczbaDoRozstawieniaJednomasztowcow == 0 && liczbaDoRozstawieniaDwumasztowcow == 0 && liczbaDoRozstawieniaTrojmasztowcow ==0 && liczbaDoRozstawieniaCzteromasztowcow == 0)
         {
             qDebug() << "0 statkow";
             QObject::disconnect(przycisk,SIGNAL(clicked()),this,SLOT(sprawdzRuch()));
+            rozstawianieStatkowKomputera();
 
-            for(int i =0; i<10;i++)
-                for(int j = 0; j<10; j++)
-                    qDebug() << tablicaRozstawieniaStatkowGracza1[j][i] ;
 
         }
         else{
@@ -248,8 +383,84 @@ void Game::sprawdzRuch()
     }
 
 }
+void Game::obrocStatek()
+{ if(frame->statusRuchu == 0)
+   {
+    if(ktoryStatekObrocic == 0)
+    {
+        QObject::disconnect(frame,SIGNAL(Ruch()),this,SLOT(ruchStatku()));
+        frame->~Okret();
+        if(czyObrocony == false)
+        {
+        dodawanieStatkow(obrazekjednomasztowcaobrocony);
+        czyObrocony = true;
+        }
+        else
+        {
+          czyObrocony = false ;
+          dodawanieStatkow(obrazekjednomasztowca);
+        }
+    }
+    if(ktoryStatekObrocic == 1)
+    {
+        QObject::disconnect(frame,SIGNAL(Ruch()),this,SLOT(ruchStatku()));
+        frame->~Okret();
+        if(czyObrocony == false)
+        {
+        dodawanieStatkow(obrazekdwumasztowcaobrocony);
+        czyObrocony = true;
+        }
+        else
+        {
+          czyObrocony = false ;
+          dodawanieStatkow(obrazekdwumasztowca);
+        }
+    }
+    if(ktoryStatekObrocic == 2)
+    {
+        QObject::disconnect(frame,SIGNAL(Ruch()),this,SLOT(ruchStatku()));
+        frame->~Okret();
+        if(czyObrocony == false)
+        {
+        dodawanieStatkow(obrazektrojmasztowcaobrocony);
+        czyObrocony = true;
+        }
+        else
+        {
+          czyObrocony = false ;
+          dodawanieStatkow(obrazektrojmasztowca);
+        }
+    }
+    if(ktoryStatekObrocic == 3)
+    {
+        QObject::disconnect(frame,SIGNAL(Ruch()),this,SLOT(ruchStatku()));
+        frame->~Okret();
+        if(czyObrocony == false)
+        {
+        dodawanieStatkow(obrazekczteromasztowcaobrocony);
+        czyObrocony = true;
+        }
+        else
+        {
+          czyObrocony = false ;
+          dodawanieStatkow(obrazekczteromasztowca);
+        }
+    }
+   }
+}
 
-
+void Game::plansza()
+{
+  QString a = "";
+    for(int i = 0;i<11;i++){
+        for(int j=0;j<11;j++)
+        {
+            a += tablicaRozstawieniaStatkowGracza2[j][i];
+        }
+    qDebug()<< a ;
+    a ="";
+    }
+}
 
 
 

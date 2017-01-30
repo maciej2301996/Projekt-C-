@@ -30,7 +30,11 @@ public:
     void gamemenu();
     void dodawanieStatkow(QString a);
     void rozstawianieStatkow();
+    void rozstawianieStatkowKomputera();
+    void sprawdzRuchKomputera(QString obrazek, int losowaOrientacja, int liczbaMasztow);
 
+
+    void plansza();
     // attrybuty
     QList<PolePlanszy*> PolaGracza1;
     QList<PolePlanszy*> PolaPrzeciwnika;
@@ -56,18 +60,30 @@ public:
 
     int rodzajStatku ;
 
+    int ktoryStatekObrocic;
+
+    int rozstawionychStatkow ;
+
+    bool czyObrocony ;
+
     QString obrazekjednomasztowca ;
     QString obrazekdwumasztowca   ;
     QString obrazektrojmasztowca  ;
     QString obrazekczteromasztowca;
 
+    QString obrazekjednomasztowcaobrocony;
+    QString obrazekdwumasztowcaobrocony;
+    QString obrazektrojmasztowcaobrocony;
+    QString obrazekczteromasztowcaobrocony;
+
     QString tablicaRozstawieniaStatkowGracza1[11][11];
-    QString tablicaRozstawieniaStatkowGracza2[10][10];
+    QString tablicaRozstawieniaStatkowGracza2[11][11];
 
     QString tablicaStrzelaniaGracza1[10][10];
     QString tablicaStrzelaniaGracza2[10][10];
 
     QPushButton* przycisk ;
+    QPushButton* przycisk1;
 
     QGraphicsScene* scene;
     QGraphicsScene* scene2;
@@ -75,6 +91,7 @@ public slots:
     void start();
     void ruchStatku();
     void sprawdzRuch();
+    void obrocStatek();
 };
 
 
