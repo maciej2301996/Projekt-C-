@@ -12,7 +12,7 @@ class Okret :  public QLabel
 {
     Q_OBJECT
 public:
-    Okret();
+    Okret(QString a);
 
     void mousePressEvent(QMouseEvent* ev);
     void mouseMoveEvent(QMouseEvent* event);

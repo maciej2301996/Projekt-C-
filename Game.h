@@ -28,7 +28,7 @@ public:
 
     // metody
     void gamemenu();
-    void dodawanieStatkow();
+    void dodawanieStatkow(QString a);
     void rozstawianieStatkow();
 
     // attrybuty
@@ -56,12 +56,18 @@ public:
 
     int rodzajStatku ;
 
-    QString tablicaRozstawieniaStatkowGracza1[10][10];
+    QString obrazekjednomasztowca ;
+    QString obrazekdwumasztowca   ;
+    QString obrazektrojmasztowca  ;
+    QString obrazekczteromasztowca;
+
+    QString tablicaRozstawieniaStatkowGracza1[11][11];
     QString tablicaRozstawieniaStatkowGracza2[10][10];
 
     QString tablicaStrzelaniaGracza1[10][10];
     QString tablicaStrzelaniaGracza2[10][10];
 
+    QPushButton* przycisk ;
 
     QGraphicsScene* scene;
     QGraphicsScene* scene2;

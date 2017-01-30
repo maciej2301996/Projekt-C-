@@ -1,11 +1,10 @@
 #include "okret.h"
 
-Okret::Okret()
+Okret::Okret(QString a)
 {
-    QPixmap pix("C:\\Users\\user\\Desktop\\dwumasztowiec.png");
+    QPixmap pix(a);
     wysokosc = pix.height();
     szerokosc = pix.width();
-    //setGeometry(100,50,80,40);
     setPixmap(pix);
     statusRuchu  =  0;
     ruch = false;
@@ -24,7 +23,7 @@ void Okret::mouseMoveEvent(QMouseEvent *event)
           this->move(QLabel::mapToParent(event->pos() - offset));
           xPos = this->pos().x();
           yPos = this->pos().y();
-          qDebug() << xPos << yPos;
+        //  qDebug() << xPos << yPos;
        }
    }
 
