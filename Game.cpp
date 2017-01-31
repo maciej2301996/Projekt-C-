@@ -1,4 +1,8 @@
 #include "Game.h"
+#include "ustawienia.h"
+
+
+extern Ustawienia* ustawienia ;
 
 Game::Game(QWidget *)
 {
@@ -67,6 +71,7 @@ void Game::gamemenu()
     Button* optionButton = new Button(QString("Opcje"));
     int button3xPos = this->width()/2 - optionButton->boundingRect().width()/2;
     int button3yPos = this->height() * 2 /6 + 80;
+    QObject::connect(optionButton,SIGNAL(clicked()),this,SLOT(ustawScene()));
     optionButton->setPos(button3xPos,button3yPos);
     scene->addItem(optionButton);
 
@@ -544,6 +549,26 @@ void Game::czyTrafiony(int x, int y, int tablicaXpos, int tablicaYpos)
         tablicaStrzelaniaGracza1[wspolrzednaX][wspolrzednaY] = tablicaRozstawieniaStatkowGracza2[wspolrzednaX][wspolrzednaY];
         czyKtosWygral1();
     }
+}
+
+void Game::ustawScene()
+{
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setFixedSize(1910,1000);
+
+
+    scenaUstawien = new QGraphicsScene();
+    scenaUstawien->setSceneRect(0,0,1910,1000);
+    setScene(scenaUstawien);
+
+
+    ustawienia->widokUstawien();
+}
+
+void Game::wrocDoMenu()
+{
+    setScene(scene);
 }
 void Game::plansza()
 {

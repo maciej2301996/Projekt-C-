@@ -3,8 +3,10 @@
 #include <QTime>
 #include <qglobal.h>
 
-Game* game;
+#include <ustawienia.h>
 
+Game* game;
+Ustawienia* ustawienia;
 int main(int argc, char *argv[])
 {
     QTime time = QTime::currentTime();
@@ -12,7 +14,11 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
 
+
+
     game = new Game();
+    ustawienia = new Ustawienia();
+
     game->show();
     game->gamemenu();
 

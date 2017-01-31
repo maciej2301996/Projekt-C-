@@ -91,16 +91,21 @@ public:
 
     QGraphicsScene* scene;
     QGraphicsScene* scene2;
+    QGraphicsScene* scenaUstawien;
 public slots:
     void start();
     void ruchStatku();
     void sprawdzRuch();
     void obrocStatek();
     void czyTrafiony(int x,int y,int tablicaXpos,int tablicaYpos);
+    void ustawScene();
+    void wrocDoMenu();
+
 
 signals :
     void poStrzale(bool a,int tablicaXpos,int tablicaYpos);
     void strzalKomputera(bool a,int tablicaXpos,int tablicaYpos);
+
 };
 
 
