@@ -10,7 +10,9 @@ Okret::Okret(QString a)
     szerokosc = pix.width();
     setPixmap(pix);
     statusRuchu  =  0;
-    ruch = false;
+    xPos = 0;
+    yPos = 0;
+
 }
 
 Okret::~Okret()
@@ -20,7 +22,7 @@ Okret::~Okret()
 void Okret::mousePressEvent(QMouseEvent *ev)
 {
      offset = ev->pos();
-     ruch = true;
+
 }
 void Okret::mouseMoveEvent(QMouseEvent *event)
 {
@@ -38,6 +40,6 @@ void Okret::mouseMoveEvent(QMouseEvent *event)
 }
 void Okret::mouseReleaseEvent(QMouseEvent *)
 {
-   ruch = false;
+
    emit Ruch();
 }

@@ -35,7 +35,7 @@ void PolePlanszy::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
 void PolePlanszy::poStrzale(bool a,int j, int i)
 {
-    if(a == true && j == tablicaXpos && i == tablicaYpos)
+    if(a == true && j == tablicaXpos && i == tablicaYpos )
     {
         QBrush brush;
         brush.setStyle(Qt::SolidPattern);
@@ -51,7 +51,10 @@ void PolePlanszy::poStrzale(bool a,int j, int i)
 
         setBrush(brush);
         game->fazaGry = 2;
+        if(game->wczytuje == false)
+        {
         game->strzelanieKomputera();
+        }
     }
     else
     {
@@ -68,7 +71,10 @@ void PolePlanszy::strzalKomputera(bool a, int j, int i)
         brush.setColor(Qt::red);
         setBrush(brush);
         game->fazaGry = 2;
-        game->strzelanieKomputera();
+        if(game->wczytuje == false)
+        {
+         game->strzelanieKomputera();
+        }
     }
     else if(a == false && j == tablicaXpos && i == tablicaYpos)
     {

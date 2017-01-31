@@ -27,7 +27,7 @@ public:
     int wysokosc;
     int szerokosc;
 
-    bool ruch;
+
     QPoint offset;
 
     int statusRuchu ;

@@ -5,7 +5,6 @@ extern Game* game;
 Ustawienia::Ustawienia()
 {
 }
-
 void Ustawienia::widokUstawien()
 {
     QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Ustawienia"));
@@ -79,7 +78,6 @@ void Ustawienia::widokUstawien()
     game->scenaUstawien->addWidget(zastosuj);
 
 }
-
 void Ustawienia::Zastosuj()
 {
    QString iloscjednomasztowcow = jednomasztowiec1->text();

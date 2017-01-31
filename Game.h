@@ -8,6 +8,8 @@
 #include <QDebug>
 #include <QLabel>
 #include <QPushButton>
+#include <QtAlgorithms>
+#include <QApplication>
 
 #include "Button.h"
 #include "poleplanszy.h"
@@ -35,8 +37,12 @@ public:
     void strzelanieKomputera();
     void czyKtosWygral1();
     void czyKtosWygral2();
-
+    void ustawLiczbeStatkow();
     void plansza();
+    void startZWczytania();
+    void sprawdzanieZatopien();
+    void sprawdzanieZatopienKomputera();
+    void rysowanieTabelki();
     // attrybuty
     QList<PolePlanszy*> PolaGracza1;
     QList<PolePlanszy*> PolaPrzeciwnika;
@@ -65,10 +71,26 @@ public:
     int ktoryStatekObrocic;
 
     int rozstawionychStatkow ;
-
+    int iloscStatkow ;
     int fazaGry ;
 
+    int liczbaPunktow;
+    int liczbaRuchowGracza;
+    int liczbaRuchowKomputera;
+
+    int liczbaJednoMasztowcowGracza;
+    int liczbaDwuMasztowcowGracza;
+    int liczbaTrzyMasztowcowGracza;
+    int liczbaCzteroMasztowcowGracza;
+
+    int liczbaJednoMasztowcowKomputera;
+    int liczbaDwuMasztowcowKomputera;
+    int liczbaTrzyMasztowcowKomputera;
+    int liczbaCzteroMasztowcowKomputera;
+
     bool czyObrocony ;
+    bool rozlacz ;
+    bool wczytuje;
 
     QString obrazekjednomasztowca ;
     QString obrazekdwumasztowca   ;
@@ -88,9 +110,12 @@ public:
 
     QPushButton* przycisk ;
     QPushButton* przycisk1;
+    QPushButton* zapis;
+    QPushButton* wrocDomenu;
 
     QGraphicsScene* scene;
     QGraphicsScene* scene2;
+    QGraphicsScene* scenaKoncowa;
     QGraphicsScene* scenaUstawien;
 public slots:
     void start();
@@ -100,7 +125,8 @@ public slots:
     void czyTrafiony(int x,int y,int tablicaXpos,int tablicaYpos);
     void ustawScene();
     void wrocDoMenu();
-
+    void zapiszGre();
+    void wczytajZapis();
 
 signals :
     void poStrzale(bool a,int tablicaXpos,int tablicaYpos);
