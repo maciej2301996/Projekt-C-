@@ -32,7 +32,9 @@ public:
     void rozstawianieStatkow();
     void rozstawianieStatkowKomputera();
     void sprawdzRuchKomputera(QString obrazek, int losowaOrientacja, int liczbaMasztow);
-
+    void strzelanieKomputera();
+    void czyKtosWygral1();
+    void czyKtosWygral2();
 
     void plansza();
     // attrybuty
@@ -64,6 +66,8 @@ public:
 
     int rozstawionychStatkow ;
 
+    int fazaGry ;
+
     bool czyObrocony ;
 
     QString obrazekjednomasztowca ;
@@ -79,8 +83,8 @@ public:
     QString tablicaRozstawieniaStatkowGracza1[11][11];
     QString tablicaRozstawieniaStatkowGracza2[11][11];
 
-    QString tablicaStrzelaniaGracza1[10][10];
-    QString tablicaStrzelaniaGracza2[10][10];
+    QString tablicaStrzelaniaGracza1[11][11];
+    QString tablicaStrzelaniaGracza2[11][11];
 
     QPushButton* przycisk ;
     QPushButton* przycisk1;
@@ -92,6 +96,11 @@ public slots:
     void ruchStatku();
     void sprawdzRuch();
     void obrocStatek();
+    void czyTrafiony(int x,int y,int tablicaXpos,int tablicaYpos);
+
+signals :
+    void poStrzale(bool a,int tablicaXpos,int tablicaYpos);
+    void strzalKomputera(bool a,int tablicaXpos,int tablicaYpos);
 };
 
 

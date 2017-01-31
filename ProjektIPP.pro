@@ -17,13 +17,15 @@ SOURCES += main.cpp\
     Button.cpp \
     PolePlanszy.cpp \
     okret.cpp \
-    ramka.cpp
+    ramka.cpp \
+    ustawienia.cpp
 
 HEADERS  += \
     Button.h \
     Game.h \
     PolePlanszy.h \
     okret.h \
-    ramka.h
+    ramka.h \
+    ustawienia.h
 
 FORMS    +=

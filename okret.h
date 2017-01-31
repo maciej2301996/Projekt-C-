@@ -5,7 +5,7 @@
 #include <QObject>
 #include <QMouseEvent>
 #include <QGraphicsItem>
-
+#include <QPainter>
 #include <QDebug>
 
 class Okret :  public QLabel
